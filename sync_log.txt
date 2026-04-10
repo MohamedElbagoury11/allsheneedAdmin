@@ -1,0 +1,8 @@
+Logging in...
+Login successful.
+Starting sync...
+ERROR (Status 404): {
+  message: 'Cannot POST /admin/sync-categories',
+  error: 'Not Found',
+  statusCode: 404
+}
