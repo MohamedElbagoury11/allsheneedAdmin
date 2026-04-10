@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Search, Filter, Eye, CheckCircle, Clock, Truck, XCircle, Loader2, Minus, Plus, Printer } from 'lucide-react';
+import { Search, Eye, CheckCircle, Clock, Truck, XCircle, Loader2, Minus, Plus, Printer } from 'lucide-react';
 import api from '../lib/api';
 import { formatCurrency, formatDate, cn } from '../lib/utils';
 import { useSearchParams } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Plus, Search, Edit2, Trash2, Loader2, Image as ImageIcon, AlertCircle } from 'lucide-react';
+import { Plus, Edit2, Trash2, Loader2, Image as ImageIcon } from 'lucide-react';
 import api from '../lib/api';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
@@ -59,7 +59,13 @@ const Categories = () => {
       queryClient.invalidateQueries({ queryKey: ['admin-categories'] });
       toast.success('Category deleted');
     },
-    onError: () => toast.error('Failed to delete category'),
+    onError: (error: any) => {
+      console.error('Delete error:', error);
+      const message = error.response?.status === 500 
+        ? 'Failed to delete category. Ensure it has no products and is not referenced elsewhere.' 
+        : 'Failed to delete category';
+      toast.error(message);
+    },
   });
 
   const openModal = (category: any = null) => {
@@ -123,7 +129,16 @@ const Categories = () => {
                 <button onClick={() => openModal(category)} className="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
                   <Edit2 size={18} />
                 </button>
-                <button onClick={() => deleteMutation.mutate(category.id)} className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all">
+                <button 
+                  onClick={() => {
+                    if (category.count > 0) {
+                      toast.error(`Cannot delete category "${category.name}" because it contains ${category.count} products.`);
+                      return;
+                    }
+                    deleteMutation.mutate(category.id);
+                  }} 
+                  className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all"
+                >
                   <Trash2 size={18} />
                 </button>
               </div>

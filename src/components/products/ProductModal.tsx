@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { X, Loader2, Plus, Trash2, Camera, Image as ImageIcon } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { X, Loader2, Plus, Trash2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import api from '../../lib/api';
 import toast from 'react-hot-toast';
 
@@ -81,11 +81,6 @@ const ProductModal = ({ isOpen, onClose, product }: any) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.description.length < 10) {
-      toast.error('Description must be at least 10 characters');
-      return;
-    }
-
     setIsUploading(true);
     try {
       const uploadedUrls = await Promise.all(
@@ -161,7 +156,7 @@ const ProductModal = ({ isOpen, onClose, product }: any) => {
                 type="text"
                 className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
                 value={formData.nameEn}
-                onChange={(e) => setFormData({ ...formData, nameEn: e.target.value, name: formData.name || e.target.value })}
+                onChange={(e) => setFormData({ ...formData, nameEn: e.target.value, name: e.target.value })}
                 placeholder="Sony WH-1000XM4"
               />
             </div>
@@ -200,7 +195,7 @@ const ProductModal = ({ isOpen, onClose, product }: any) => {
                 rows={3}
                 className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none"
                 value={formData.descriptionEn}
-                onChange={(e) => setFormData({ ...formData, descriptionEn: e.target.value, description: formData.description || e.target.value })}
+                onChange={(e) => setFormData({ ...formData, descriptionEn: e.target.value, description: e.target.value })}
                 placeholder="Industry-leading noise cancelling headphones..."
               />
             </div>

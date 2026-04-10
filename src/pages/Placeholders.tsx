@@ -1,4 +1,4 @@
-import React from 'react';
+// Removed unused React import
 
 const PagePlaceholder = ({ name }: { name: string }) => (
   <div className="flex flex-col gap-6">

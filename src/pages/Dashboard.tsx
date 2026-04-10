@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { motion } from 'framer-motion';
+// Removed unused motion import
 import { 
   TrendingUp, 
   ShoppingCart, 
   Package, 
   Users, 
   ArrowUpRight, 
-  ArrowDownRight,
-  Loader2
+  ArrowDownRight
 } from 'lucide-react';
 import { 
-  LineChart, 
-  Line, 
   BarChart, 
   Bar, 
   XAxis, 
@@ -25,7 +22,7 @@ import {
   Area
 } from 'recharts';
 import api from '../lib/api';
-import { formatCurrency, formatDate } from '../lib/utils';
+import { formatCurrency } from '../lib/utils';
 
 const StatsCard = ({ title, value, icon: Icon, trend, loading }: any) => (
   <div className="card p-6 flex flex-col gap-4">
@@ -60,17 +57,17 @@ const Dashboard = () => {
     queryFn: () => api.get('/admin/analytics/summary').then(res => res.data),
   });
 
-  const { data: revenueData, isLoading: loadingRevenue } = useQuery({
+  const { data: revenueData } = useQuery({
     queryKey: ['admin-revenue', period],
     queryFn: () => api.get(`/admin/analytics/revenue?period=${period}`).then(res => res.data),
   });
 
-  const { data: ordersData, isLoading: loadingOrders } = useQuery({
+  const { data: ordersData } = useQuery({
     queryKey: ['admin-orders', period],
     queryFn: () => api.get(`/admin/analytics/orders?period=${period}`).then(res => res.data),
   });
 
-  const { data: topProducts, isLoading: loadingTopProducts } = useQuery({
+  const { data: topProducts } = useQuery({
     queryKey: ['admin-top-products'],
     queryFn: () => api.get('/admin/analytics/top-products?limit=5').then(res => res.data),
   });

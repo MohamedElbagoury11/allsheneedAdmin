@@ -1,10 +1,10 @@
-import React from 'react';
+// Removed unused React import
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Bell, Clock, CheckCircle, Package, ShoppingCart, Loader2 } from 'lucide-react';
+import { Bell, Clock, ShoppingCart, Loader2 } from 'lucide-react';
 import api from '../lib/api';
-import { formatDate, cn } from '../lib/utils';
-import toast from 'react-hot-toast';
+import { cn } from '../lib/utils';
+// Removed unused toast import
 
 const Notifications = () => {
   const queryClient = useQueryClient();
