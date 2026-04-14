@@ -8,7 +8,8 @@ import {
   Bell, 
   LogOut, 
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Star
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import api from '../../lib/api';
@@ -18,6 +19,7 @@ const navItems = [
   { icon: Package, label: 'Products', path: '/products' },
   { icon: Folders, label: 'Categories', path: '/categories' },
   { icon: ShoppingCart, label: 'Orders', path: '/orders' },
+  { icon: Star, label: 'Reviews', path: '/reviews' },
   { icon: Bell, label: 'Notifications', path: '/notifications' },
 ];
 

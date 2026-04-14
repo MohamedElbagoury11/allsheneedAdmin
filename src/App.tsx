@@ -6,6 +6,7 @@ import Categories from './pages/Categories';
 import Orders from './pages/Orders';
 import Notifications from './pages/Notifications';
 import Login from './pages/Login';
+import Reviews from './pages/Reviews';
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const token = localStorage.getItem('admin_token');
@@ -33,6 +34,7 @@ function App() {
           <Route path="products" element={<Products />} />
           <Route path="categories" element={<Categories />} />
           <Route path="orders" element={<Orders />} />
+          <Route path="reviews" element={<Reviews />} />
           <Route path="notifications" element={<Notifications />} />
         </Route>
         
