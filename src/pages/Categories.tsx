@@ -17,7 +17,7 @@ const Categories = () => {
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ['admin-categories'],
-    queryFn: () => api.get('/categories').then(res => res.data),
+    queryFn: () => api.get('/categories', { params: { includeOutOfStock: 'true' } }).then(res => res.data),
   });
 
   const mutation = useMutation({

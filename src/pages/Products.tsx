@@ -38,7 +38,7 @@ const Products = () => {
 
   const { data: products, isLoading } = useQuery({
     queryKey: ['admin-products'],
-    queryFn: () => api.get('/products').then(res => res.data),
+    queryFn: () => api.get('/products', { params: { includeOutOfStock: 'true' } }).then(res => res.data),
   });
 
   const deleteMutation = useMutation({
